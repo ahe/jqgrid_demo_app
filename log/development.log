@@ -4152,3 +4152,159 @@ ActiveRecord::StatementInvalid (Could not find table 'users'):
 Rendered rescues/_trace (32.9ms)
 Rendered rescues/_request_and_response (1.4ms)
 Rendering rescues/layout (internal_server_error)
+
+
+Processing UsersController#index (for 127.0.0.1 at 2009-04-12 19:03:38) [GET]
+
+ActiveRecord::StatementInvalid (Could not find table 'users'):
+  app/controllers/users_controller.rb:52:in `index'
+
+Rendered rescues/_trace (87.3ms)
+Rendered rescues/_request_and_response (1.4ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (3.4ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (2.5ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090412142106)
+  [4;36;1mSQL (0.7ms)[0m   [0;1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pseudo" varchar(255), "firstname" varchar(255), "lastname" varchar(255), "email" varchar(255), "role" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mUser Create (0.1ms)[0m   [0mINSERT INTO "users" ("pseudo", "updated_at", "role", "firstname", "lastname", "email", "created_at") VALUES('ahe', '2009-04-12 17:03:47', 'admin', 'Anthony', 'Heukmes', 'ahe@ahe.be', '2009-04-12 17:03:47')[0m
+  [4;36;1mUser Create (0.1ms)[0m   [0;1mINSERT INTO "users" ("pseudo", "updated_at", "role", "firstname", "lastname", "email", "created_at") VALUES('willd', '2009-04-12 17:03:47', 'middlefielder', 'Wilfried', 'Dalmat', 'willd@ahe.be', '2009-04-12 17:03:47')[0m
+  [4;35;1mUser Create (0.1ms)[0m   [0mINSERT INTO "users" ("pseudo", "updated_at", "role", "firstname", "lastname", "email", "created_at") VALUES('marcos', '2009-04-12 17:03:47', 'defender', 'Marcos', 'Camozzato', 'marcos@ahe.be', '2009-04-12 17:03:47')[0m
+  [4;36;1mUser Create (0.1ms)[0m   [0;1mINSERT INTO "users" ("pseudo", "updated_at", "role", "firstname", "lastname", "email", "created_at") VALUES('onyewuo', '2009-04-12 17:03:47', 'defender', 'Ogushi', 'Onyewu', 'onyewuo@ahe.be', '2009-04-12 17:03:47')[0m
+  [4;35;1mUser Create (0.1ms)[0m   [0mINSERT INTO "users" ("pseudo", "updated_at", "role", "firstname", "lastname", "email", "created_at") VALUES('sarrm', '2009-04-12 17:03:47', 'defender', 'Momo', 'Sarr', 'sarrm@ahe.be', '2009-04-12 17:03:47')[0m
+  [4;36;1mUser Create (0.1ms)[0m   [0;1mINSERT INTO "users" ("pseudo", "updated_at", "role", "firstname", "lastname", "email", "created_at") VALUES('mulemol', '2009-04-12 17:03:47', 'defender', 'Landry', 'Mulemo', 'mulemol@ahe.be', '2009-04-12 17:03:47')[0m
+  [4;35;1mUser Create (0.1ms)[0m   [0mINSERT INTO "users" ("pseudo", "updated_at", "role", "firstname", "lastname", "email", "created_at") VALUES('witsela', '2009-04-12 17:03:47', 'middlefielder', 'Axel', 'Witsel', 'witsela@ahe.be', '2009-04-12 17:03:47')[0m
+  [4;36;1mUser Create (0.1ms)[0m   [0;1mINSERT INTO "users" ("pseudo", "updated_at", "role", "firstname", "lastname", "email", "created_at") VALUES('defours', '2009-04-12 17:03:47', 'middlefielder', 'Steven', 'Defour', 'defours@ahe.be', '2009-04-12 17:03:47')[0m
+  [4;35;1mUser Create (0.1ms)[0m   [0mINSERT INTO "users" ("pseudo", "updated_at", "role", "firstname", "lastname", "email", "created_at") VALUES('goreuxr', '2009-04-12 17:03:47', 'middlefielder', 'Reginal', 'Goreux', 'goureux@ahe.be', '2009-04-12 17:03:47')[0m
+  [4;36;1mUser Create (0.1ms)[0m   [0;1mINSERT INTO "users" ("pseudo", "updated_at", "role", "firstname", "lastname", "email", "created_at") VALUES('jova', '2009-04-12 17:03:47', 'striker', 'Milan', 'Jovanovic', 'jova@ahe.be', '2009-04-12 17:03:47')[0m
+  [4;35;1mUser Create (0.1ms)[0m   [0mINSERT INTO "users" ("pseudo", "updated_at", "role", "firstname", "lastname", "email", "created_at") VALUES('decamar', '2009-04-12 17:03:47', 'striker', 'Igor', 'De Camargo', 'decamar@ahe.be', '2009-04-12 17:03:47')[0m
+  [4;36;1mUser Create (0.1ms)[0m   [0;1mINSERT INTO "users" ("pseudo", "updated_at", "role", "firstname", "lastname", "email", "created_at") VALUES('mbokani', '2009-04-12 17:03:47', 'striker', 'Dieumerci', 'Mbokani', 'mbokani@ahe.be', '2009-04-12 17:03:47')[0m
+  [4;35;1mUser Create (0.1ms)[0m   [0mINSERT INTO "users" ("pseudo", "updated_at", "role", "firstname", "lastname", "email", "created_at") VALUES('nicaise', '2009-04-12 17:03:47', 'middlefielder', 'Benjamin', 'Nicaise', 'nicaise@ahe.be', '2009-04-12 17:03:47')[0m
+  [4;36;1mUser Create (1.0ms)[0m   [0;1mINSERT INTO "users" ("pseudo", "updated_at", "role", "firstname", "lastname", "email", "created_at") VALUES('bolats', '2009-04-12 17:03:47', 'goalkeeper', 'Sinan', 'Bolat', 'bolats@ahe.be', '2009-04-12 17:03:47')[0m
+  [4;35;1mUser Create (0.1ms)[0m   [0mINSERT INTO "users" ("pseudo", "updated_at", "role", "firstname", "lastname", "email", "created_at") VALUES('leonb', '2009-04-12 17:03:47', 'striker', 'Leon', 'Benko', 'leonb@ahe.be', '2009-04-12 17:03:47')[0m
+  [4;36;1mUser Create (0.1ms)[0m   [0;1mINSERT INTO "users" ("pseudo", "updated_at", "role", "firstname", "lastname", "email", "created_at") VALUES('espi', '2009-04-12 17:03:47', 'goalkeeper', 'Aragon', 'Espinoza', 'espi@ahe.be', '2009-04-12 17:03:47')[0m
+  [4;35;1mUser Create (0.1ms)[0m   [0mINSERT INTO "users" ("pseudo", "updated_at", "role", "firstname", "lastname", "email", "created_at") VALUES('carce', '2009-04-12 17:03:47', 'middlefielder', 'Medhi', 'Carcela', 'carce@ahe.be', '2009-04-12 17:03:47')[0m
+  [4;36;1mUser Create (0.1ms)[0m   [0;1mINSERT INTO "users" ("pseudo", "updated_at", "role", "firstname", "lastname", "email", "created_at") VALUES('manga', '2009-04-12 17:03:47', 'middlefielder', 'Eliaquim', 'Mangala', 'manga@ahe.be', '2009-04-12 17:03:47')[0m
+  [4;35;1mUser Create (0.1ms)[0m   [0mINSERT INTO "users" ("pseudo", "updated_at", "role", "firstname", "lastname", "email", "created_at") VALUES('miku', '2009-04-12 17:03:47', 'defender', 'Tomislav', 'Mikulic', 'miku@ahe.be', '2009-04-12 17:03:47')[0m
+  [4;36;1mUser Create (0.1ms)[0m   [0;1mINSERT INTO "users" ("pseudo", "updated_at", "role", "firstname", "lastname", "email", "created_at") VALUES('maestro', '2009-04-12 17:03:47', 'middlefielder', 'Segio', 'Conceicao', 'maestro@ahe.be', '2009-04-12 17:03:47')[0m
+  [4;35;1mUser Create (0.1ms)[0m   [0mINSERT INTO "users" ("pseudo", "updated_at", "role", "firstname", "lastname", "email", "created_at") VALUES('bolo', '2009-04-12 17:03:47', 'trainer', 'Laszlo', 'Boloni', 'bolo@ahe.be', '2009-04-12 17:03:47')[0m
+  [4;36;1mUser Create (0.1ms)[0m   [0;1mINSERT INTO "users" ("pseudo", "updated_at", "role", "firstname", "lastname", "email", "created_at") VALUES('pesto', '2009-04-12 17:03:47', 'trainer', 'Joaquim', 'Preto', 'ahe@ahe.be', '2009-04-12 17:03:47')[0m
+  [4;35;1mUser Create (0.1ms)[0m   [0mINSERT INTO "users" ("pseudo", "updated_at", "role", "firstname", "lastname", "email", "created_at") VALUES('pf', '2009-04-12 17:03:47', 'admin', 'Pierre', 'Francois', 'pf@ahe.be', '2009-04-12 17:03:47')[0m
+  [4;36;1mUser Create (0.1ms)[0m   [0;1mINSERT INTO "users" ("pseudo", "updated_at", "role", "firstname", "lastname", "email", "created_at") VALUES('moi', '2009-04-12 17:03:47', 'striker', 'Moi', 'Moi', 'moi@ahe.be', '2009-04-12 17:03:47')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090412142106')[0m
+Migrating to CreatePets (20090412152333)
+  [4;36;1mSQL (0.9ms)[0m   [0;1mCREATE TABLE "pets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "user_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mPet Create (0.1ms)[0m   [0mINSERT INTO "pets" ("name", "updated_at", "user_id", "created_at") VALUES('Youpi', '2009-04-12 17:03:47', 1, '2009-04-12 17:03:47')[0m
+  [4;36;1mPet Create (0.1ms)[0m   [0;1mINSERT INTO "pets" ("name", "updated_at", "user_id", "created_at") VALUES('Blouk', '2009-04-12 17:03:47', 1, '2009-04-12 17:03:47')[0m
+  [4;35;1mPet Create (0.1ms)[0m   [0mINSERT INTO "pets" ("name", "updated_at", "user_id", "created_at") VALUES('Pif', '2009-04-12 17:03:47', 1, '2009-04-12 17:03:47')[0m
+  [4;36;1mPet Create (0.1ms)[0m   [0;1mINSERT INTO "pets" ("name", "updated_at", "user_id", "created_at") VALUES('Paf', '2009-04-12 17:03:47', 2, '2009-04-12 17:03:47')[0m
+  [4;35;1mPet Create (0.1ms)[0m   [0mINSERT INTO "pets" ("name", "updated_at", "user_id", "created_at") VALUES('Meuh', '2009-04-12 17:03:47', 3, '2009-04-12 17:03:47')[0m
+  [4;36;1mPet Create (0.1ms)[0m   [0;1mINSERT INTO "pets" ("name", "updated_at", "user_id", "created_at") VALUES('Boug', '2009-04-12 17:03:47', 3, '2009-04-12 17:03:47')[0m
+  [4;35;1mPet Create (0.1ms)[0m   [0mINSERT INTO "pets" ("name", "updated_at", "user_id", "created_at") VALUES('Zigg', '2009-04-12 17:03:47', 4, '2009-04-12 17:03:47')[0m
+  [4;36;1mPet Create (0.1ms)[0m   [0;1mINSERT INTO "pets" ("name", "updated_at", "user_id", "created_at") VALUES('Iop', '2009-04-12 17:03:47', 4, '2009-04-12 17:03:47')[0m
+  [4;35;1mPet Create (0.1ms)[0m   [0mINSERT INTO "pets" ("name", "updated_at", "user_id", "created_at") VALUES('Tcham', '2009-04-12 17:03:47', 4, '2009-04-12 17:03:47')[0m
+  [4;36;1mPet Create (0.1ms)[0m   [0;1mINSERT INTO "pets" ("name", "updated_at", "user_id", "created_at") VALUES('Outch', '2009-04-12 17:03:47', 5, '2009-04-12 17:03:47')[0m
+  [4;35;1mPet Create (0.2ms)[0m   [0mINSERT INTO "pets" ("name", "updated_at", "user_id", "created_at") VALUES('Tzii', '2009-04-12 17:03:47', 5, '2009-04-12 17:03:47')[0m
+  [4;36;1mPet Create (0.1ms)[0m   [0;1mINSERT INTO "pets" ("name", "updated_at", "user_id", "created_at") VALUES('Tutu', '2009-04-12 17:03:47', 6, '2009-04-12 17:03:47')[0m
+  [4;35;1mPet Create (0.1ms)[0m   [0mINSERT INTO "pets" ("name", "updated_at", "user_id", "created_at") VALUES('Tata', '2009-04-12 17:03:47', 7, '2009-04-12 17:03:47')[0m
+  [4;36;1mPet Create (0.1ms)[0m   [0;1mINSERT INTO "pets" ("name", "updated_at", "user_id", "created_at") VALUES('Bobo', '2009-04-12 17:03:47', 7, '2009-04-12 17:03:47')[0m
+  [4;35;1mPet Create (0.1ms)[0m   [0mINSERT INTO "pets" ("name", "updated_at", "user_id", "created_at") VALUES('Bulk', '2009-04-12 17:03:47', 7, '2009-04-12 17:03:47')[0m
+  [4;36;1mPet Create (0.1ms)[0m   [0;1mINSERT INTO "pets" ("name", "updated_at", "user_id", "created_at") VALUES('Rocky', '2009-04-12 17:03:47', 7, '2009-04-12 17:03:47')[0m
+  [4;35;1mPet Create (0.2ms)[0m   [0mINSERT INTO "pets" ("name", "updated_at", "user_id", "created_at") VALUES('Arnold', '2009-04-12 17:03:47', 8, '2009-04-12 17:03:47')[0m
+  [4;36;1mPet Create (0.2ms)[0m   [0;1mINSERT INTO "pets" ("name", "updated_at", "user_id", "created_at") VALUES('Miii', '2009-04-12 17:03:47', 9, '2009-04-12 17:03:47')[0m
+  [4;35;1mPet Create (0.1ms)[0m   [0mINSERT INTO "pets" ("name", "updated_at", "user_id", "created_at") VALUES('Tititi', '2009-04-12 17:03:47', 10, '2009-04-12 17:03:47')[0m
+  [4;36;1mPet Create (0.1ms)[0m   [0;1mINSERT INTO "pets" ("name", "updated_at", "user_id", "created_at") VALUES('Bob', '2009-04-12 17:03:47', 11, '2009-04-12 17:03:47')[0m
+  [4;35;1mPet Create (0.1ms)[0m   [0mINSERT INTO "pets" ("name", "updated_at", "user_id", "created_at") VALUES('Max', '2009-04-12 17:03:47', 12, '2009-04-12 17:03:47')[0m
+  [4;36;1mPet Create (0.1ms)[0m   [0;1mINSERT INTO "pets" ("name", "updated_at", "user_id", "created_at") VALUES('Poop', '2009-04-12 17:03:47', 12, '2009-04-12 17:03:47')[0m
+  [4;35;1mPet Create (0.1ms)[0m   [0mINSERT INTO "pets" ("name", "updated_at", "user_id", "created_at") VALUES('Bikk', '2009-04-12 17:03:47', 13, '2009-04-12 17:03:47')[0m
+  [4;36;1mPet Create (0.2ms)[0m   [0;1mINSERT INTO "pets" ("name", "updated_at", "user_id", "created_at") VALUES('Allo', '2009-04-12 17:03:47', 13, '2009-04-12 17:03:47')[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090412152333')[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("pets")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("users")[0m
+
+
+Processing UsersController#index (for 127.0.0.1 at 2009-04-12 19:03:55) [GET]
+  [4;36;1mUser Load (2.2ms)[0m   [0;1mSELECT * FROM "users" LIMIT 20 OFFSET 0[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 23ms (View: 13, DB: 2) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2009-04-12 19:03:56) [GET]
+  Parameters: {"nd"=>"1239555836061", "sord"=>"asc", "_search"=>"false", "rows"=>"10", "page"=>"1", "sidx"=>"id"}
+  [4;36;1mUser Load (1.3ms)[0m   [0;1mSELECT * FROM "users" ORDER BY id asc LIMIT 10 OFFSET 0[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSELECT count(*) AS count_all FROM "users" ORDER BY id asc [0m
+Completed in 11ms (View: 1, DB: 2) | 200 OK [http://localhost/users?nd=1239555836042&nd=1239555836061&_search=false&rows=10&page=1&sidx=id&sord=asc]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2009-04-12 19:03:56) [GET]
+  Parameters: {"nd"=>"1239555835947", "sord"=>"asc", "_search"=>"false", "rows"=>"10", "page"=>"1", "sidx"=>"id"}
+  [4;36;1mUser Load (1.2ms)[0m   [0;1mSELECT * FROM "users" ORDER BY id asc LIMIT 10 OFFSET 0[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSELECT count(*) AS count_all FROM "users" ORDER BY id asc [0m
+Completed in 15ms (View: 1, DB: 2) | 200 OK [http://localhost/users?nd=1239555835931&nd=1239555835947&_search=false&rows=10&page=1&sidx=id&sord=asc]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2009-04-12 19:03:56) [GET]
+  Parameters: {"nd"=>"1239555835892", "sord"=>"asc", "_search"=>"false", "rows"=>"10", "page"=>"1", "sidx"=>"id"}
+  [4;36;1mUser Load (3.8ms)[0m   [0;1mSELECT * FROM "users" ORDER BY id asc LIMIT 10 OFFSET 0[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSELECT count(*) AS count_all FROM "users" ORDER BY id asc [0m
+Completed in 28ms (View: 1, DB: 4) | 200 OK [http://localhost/users?nd=1239555835876&nd=1239555835892&_search=false&rows=10&page=1&sidx=id&sord=asc]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2009-04-12 19:03:56) [GET]
+  Parameters: {"nd"=>"1239555836030", "sord"=>"asc", "_search"=>"false", "rows"=>"10", "page"=>"1", "sidx"=>"id"}
+  [4;36;1mUser Load (1.5ms)[0m   [0;1mSELECT * FROM "users" ORDER BY id asc LIMIT 10 OFFSET 0[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSELECT count(*) AS count_all FROM "users" ORDER BY id asc [0m
+Completed in 20ms (View: 1, DB: 2) | 200 OK [http://localhost/users?nd=1239555836012&nd=1239555836030&_search=false&rows=10&page=1&sidx=id&sord=asc]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2009-04-12 19:03:56) [GET]
+  Parameters: {"nd"=>"1239555835917", "sord"=>"asc", "_search"=>"false", "rows"=>"10", "page"=>"1", "sidx"=>"id"}
+  [4;36;1mUser Load (1.2ms)[0m   [0;1mSELECT * FROM "users" ORDER BY id asc LIMIT 10 OFFSET 0[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSELECT count(*) AS count_all FROM "users" ORDER BY id asc [0m
+Completed in 17ms (View: 1, DB: 2) | 200 OK [http://localhost/users?nd=1239555835902&nd=1239555835917&_search=false&rows=10&page=1&sidx=id&sord=asc]
+
+
+Processing UsersController#pets (for 127.0.0.1 at 2009-04-12 19:03:56) [GET]
+  Parameters: {"nd"=>"1239555835998", "sord"=>"asc", "_search"=>"false", "rows"=>"10", "page"=>"1", "sidx"=>"id"}
+Completed in 4ms (View: 1, DB: 0) | 200 OK [http://localhost/users/pets?nd=1239555835984&nd=1239555835998&_search=false&rows=10&page=1&sidx=id&sord=asc]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2009-04-12 19:03:56) [GET]
+  Parameters: {"nd"=>"1239555835852", "sord"=>"asc", "_search"=>"false", "rows"=>"10", "page"=>"1", "sidx"=>"id"}
+  [4;36;1mUser Load (1.3ms)[0m   [0;1mSELECT * FROM "users" ORDER BY id asc LIMIT 10 OFFSET 0[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSELECT count(*) AS count_all FROM "users" ORDER BY id asc [0m
+Completed in 17ms (View: 1, DB: 2) | 200 OK [http://localhost/users?nd=1239555835804&nd=1239555835852&_search=false&rows=10&page=1&sidx=id&sord=asc]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2009-04-12 19:03:56) [GET]
+  Parameters: {"nd"=>"1239555835974", "sord"=>"asc", "_search"=>"false", "rows"=>"10", "page"=>"1", "sidx"=>"id"}
+  [4;36;1mUser Load (1.4ms)[0m   [0;1mSELECT * FROM "users" ORDER BY id asc LIMIT 10 OFFSET 0[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSELECT count(*) AS count_all FROM "users" ORDER BY id asc [0m
+Completed in 16ms (View: 1, DB: 2) | 200 OK [http://localhost/users?nd=1239555835957&nd=1239555835974&_search=false&rows=10&page=1&sidx=id&sord=asc]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2009-04-12 19:03:56) [GET]
+  Parameters: {"nd"=>"1239555836100", "sord"=>"asc", "_search"=>"false", "rows"=>"10", "page"=>"1", "sidx"=>"id"}
+  [4;36;1mUser Load (1.5ms)[0m   [0;1mSELECT * FROM "users" ORDER BY id asc LIMIT 10 OFFSET 0[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSELECT count(*) AS count_all FROM "users" ORDER BY id asc [0m
+Completed in 15ms (View: 1, DB: 2) | 200 OK [http://localhost/users?nd=1239555836075&nd=1239555836100&_search=false&rows=10&page=1&sidx=id&sord=asc]
