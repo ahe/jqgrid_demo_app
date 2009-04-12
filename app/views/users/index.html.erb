@@ -1,0 +1,137 @@
+<h1>Simple DataGrid</h1>
+<%= jqgrid("Football Players", "players", "/users",
+	[
+		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
+		{ :field => "pseudo", :label => "Pseudo" },
+		{ :field => "firstname", :label => "Firstname" },
+		{ :field => "lastname", :label => "Lastname" },
+		{ :field => "email", :label => "Email" },
+		{ :field => "role", :label => "Role" }
+	]
+) %>
+<br/>
+<hr/>
+<br/>
+<h1>Simple DataGrid with selection link/button</h1>
+<script type="text/javascript">
+	
+	function handleSelection(id) {
+		alert('ID selected : ' + id);
+	}
+	
+</script>
+<%= jqgrid("Football Players", "players_2", "/users",
+	[
+		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
+		{ :field => "pseudo", :label => "Pseudo" },
+		{ :field => "firstname", :label => "Firstname" },
+		{ :field => "lastname", :label => "Lastname" },
+		{ :field => "email", :label => "Email" },
+		{ :field => "role", :label => "Role" }
+	],
+	{ :selection_handler => "handleSelection" }
+) %>
+<!-- The ID of this button is important, it must be jqgrid ID (players_2) + _select_button -->
+<a href="#" id="players_2_select_button">Get ID of selected row</a>
+<br/>
+<hr/>
+<br/>
+<h1>Simple DataGrid with direct selection</h1>
+<%= jqgrid("Football Players", "players_3", "/users",
+	[
+		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
+		{ :field => "pseudo", :label => "Pseudo" },
+		{ :field => "firstname", :label => "Firstname" },
+		{ :field => "lastname", :label => "Lastname" },
+		{ :field => "email", :label => "Email" },
+		{ :field => "role", :label => "Role" }
+	],
+	{ :selection_handler => "handleSelection", :direct_selection => true }
+) %>
+<br/>
+<hr/>
+<br/>
+<h1>Simple DataGrid with multiple selections</h1>
+<%= jqgrid("Football Players", "players_4", "/users",
+	[
+		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
+		{ :field => "pseudo", :label => "Pseudo" },
+		{ :field => "firstname", :label => "Firstname" },
+		{ :field => "lastname", :label => "Lastname" },
+		{ :field => "email", :label => "Email" },
+		{ :field => "role", :label => "Role" }
+	],
+	{ :selection_handler => "handleSelection", :multi_selection => true }
+) %>
+<!-- The ID of this button is important, it must be jqgrid ID (players_4) + _select_button -->
+<a href="#" id="players_4_select_button">Get IDs of selected rows</a>
+<br/>
+<hr/>
+<br/>
+<h1>Simple DataGrid with master details</h1>
+<%= jqgrid("Football Players", "players_5", "/users",
+	[
+		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
+		{ :field => "pseudo", :label => "Pseudo" },
+		{ :field => "firstname", :label => "Firstname" },
+		{ :field => "lastname", :label => "Lastname" },
+		{ :field => "email", :label => "Email" },
+		{ :field => "role", :label => "Role" }
+	],
+	{ :master_details => true, :details_url => "/users/pets", :details_caption => "Pets" }
+) %>
+<br/>
+<!-- The ID of the details grid is important, it must master ID (players_5) + _details -->
+<%= jqgrid("Pets", "players_5_details", "/users/pets",
+	[
+		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
+		{ :field => "name", :label => "Name", :width => 500, :align => 'center' }
+	]
+) %>
+<br/>
+<hr/>
+<br/>
+<h1>Data manipulation with inline editing</h1>
+<%= jqgrid("Football Players", "players_6", "/users",
+	[
+		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
+		{ :field => "pseudo", :label => "Pseudo", :editable => true },
+		{ :field => "firstname", :label => "Firstname", :editable => true },
+		{ :field => "lastname", :label => "Lastname", :editable => true },
+		{ :field => "email", :label => "Email", :editable => true },
+		{ :field => "role", :label => "Role", :editable => true }
+	],
+	{ :add => true, :edit => true, :inline_edit => true, :delete => true, :edit_url => "/users/post_data" }
+) %>
+<br/>
+<hr/>
+<br/>
+<h1>Data manipulation with modal editing (+ navigation)</h1>
+<%= jqgrid("Football Players", "players_7", "/users",
+	[
+		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
+		{ :field => "pseudo", :label => "Pseudo", :editable => true },
+		{ :field => "firstname", :label => "Firstname", :editable => true },
+		{ :field => "lastname", :label => "Lastname", :editable => true },
+		{ :field => "email", :label => "Email", :editable => true },
+		{ :field => "role", :label => "Role", :editable => true }
+	],
+	{ :add => true, :edit => true, :inline_edit => false, :delete => true, :edit_url => "/users/post_data" }
+) %>
+<br/>
+<hr/>
+<br/>
+<h1>Data manipulation with various input types</h1>
+<%= jqgrid("Football Players", "players_8", "/users",
+	[
+		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
+		{ :field => "pseudo", :label => "Pseudo", :editable => true },
+		{ :field => "firstname", :label => "Firstname", :editable => true, :edittype => "checkbox",
+		  :editoptions => { :value => "Yes:No" } },
+		{ :field => "lastname", :label => "Lastname", :editable => true },
+		{ :field => "email", :label => "Email", :editable => true, :edittype => "textarea", :editoptions => { :rows => 3, :cols => 30 } },
+		{ :field => "role", :label => "Role", :editable => true, :edittype => "select",
+		  :editoptions => { :value => [["admin","admin"], ["player", "player"], ["defender","defender"]] } }
+	],
+	{ :add => true, :edit => true, :inline_edit => true, :delete => true, :edit_url => "/users/post_data" }
+) %>
