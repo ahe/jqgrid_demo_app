@@ -28,14 +28,7 @@ module ActionView
       edit_button = (options[:edit] == true && options[:inline_edit] == "false") ? "true" : "false"
 
       # Generate columns data
-      col_names = "[" # Labels
-      col_model = "[" # Options
-      columns.each do |c|
-        col_names << "'#{c[:label]}',"
-        col_model << "{name:'#{c[:field]}', index:'#{c[:field]}'#{get_attributes(c)}},"
-      end
-      col_names.chop! << "]"
-      col_model.chop! << "]"
+      col_names, col_model = gen_columns(columns)
 
       # Enable multi-selection (checkboxes)
       multiselect = ""
@@ -45,6 +38,7 @@ module ActionView
           jQuery("##{id}_select_button").click( function() { 
             var s; s = jQuery("##{id}").getGridParam('selarrrow'); 
             #{options[:selection_handler]}(s); 
+            return false;
           });/
       end
 
@@ -82,7 +76,8 @@ module ActionView
             #{options[:selection_handler]}(id); 
           } else { 
             alert("Please select a row");
-          } 
+          }
+          return false; 
         });/
       end
 
@@ -122,6 +117,42 @@ module ActionView
           } 
         },/
       end
+      
+      # Enable subgrids
+      subgrid = ""
+      subgrid_enabled = "subGrid:false,"
+      if options[:subgrid]
+        subgrid_enabled = "subGrid:true,"
+        options[:subgrid][:rows_per_page] = "10" if options[:subgrid][:rows_per_page].blank?
+        options[:subgrid][:sort_column] = "id" if options[:subgrid][:sort_column].blank?
+        options[:subgrid][:sort_order] = "asc" if options[:subgrid][:sort_order].blank?
+        subgrid_search = (options[:subgrid][:search].blank?) ? "false" : options[:subgrid][:search]
+        sub_col_names, sub_col_model = gen_columns(options[:subgrid][:columns])
+        
+        subgrid = %Q(
+        subGridRowExpanded: function(subgrid_id, row_id) {
+        		var subgrid_table_id, pager_id;
+        		subgrid_table_id = subgrid_id+"_t";
+        		pager_id = "p_"+subgrid_table_id;
+        		$("#"+subgrid_id).html("<table id='"+subgrid_table_id+"' class='scroll'></table><div id='"+pager_id+"' class='scroll'></div>");
+        		jQuery("#"+subgrid_table_id).jqGrid({
+        			url:"#{options[:subgrid][:url]}?q=2&id="+row_id,
+        			datatype: "json",
+        			colNames: #{sub_col_names},
+        			colModel: #{sub_col_model},
+        		   	rowNum:#{options[:subgrid][:rows_per_page]},
+        		   	pager: pager_id,
+        		   	imgpath: '/images/themes/lightness/images',
+        		   	sortname: '#{options[:subgrid][:sort_column]}',
+        		    sortorder: '#{options[:subgrid][:sort_order]}',
+        		    height: '100%'
+        		})
+        		.navGrid("#"+pager_id,{edit:false,add:false,del:false,search:#{subgrid_search}})
+        	},
+        	subGridRowColapsed: function(subgrid_id, row_id) {
+        	},
+        )
+      end
 
       # Generate required Javascript & html to create the jqgrid
       %Q(
@@ -148,6 +179,8 @@ module ActionView
             #{grid_loaded}
             #{direct_link}
             #{editable}
+            #{subgrid_enabled}
+            #{subgrid}
             caption: "#{title}"
         });
         jQuery("#t_#{id}").height(25).hide().filterGrid("#{id}",{gridModel:true,gridToolbar:true});
@@ -171,6 +204,19 @@ module ActionView
     end
 
     private
+    
+    def gen_columns(columns)
+      # Generate columns data
+      col_names = "[" # Labels
+      col_model = "[" # Options
+      columns.each do |c|
+        col_names << "'#{c[:label]}',"
+        col_model << "{name:'#{c[:field]}', index:'#{c[:field]}'#{get_attributes(c)}},"
+      end
+      col_names.chop! << "]"
+      col_model.chop! << "]"
+      [col_names, col_model]
+    end
 
     # Generate a list of attributes for related column (align:'right', sortable:true, resizable:false, ...)
     def get_attributes(column)
@@ -222,7 +268,9 @@ module JqgridJson
       json << %Q({"id":"#{elem.id}","cell":[)
       couples = elem.attributes.symbolize_keys
       attributes.each do |atr|
-        json << %Q("#{couples[atr]}",)
+        value = couples[atr]
+        value = elem.try(atr) if value.blank?
+        json << %Q("#{value}",)
       end
       json.chop! << "]},"
     end

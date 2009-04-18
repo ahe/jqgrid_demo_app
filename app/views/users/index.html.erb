@@ -135,3 +135,29 @@
 	],
 	{ :add => true, :edit => true, :inline_edit => true, :delete => true, :edit_url => "/users/post_data" }
 ) %>
+<br/>
+<hr/>
+<br/>
+<h1>Subgrids</h1>
+<%= jqgrid("Football Players", "players_9", "/users",
+	[
+		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
+		{ :field => "pseudo", :label => "Pseudo" },
+		{ :field => "firstname", :label => "Firstname" },
+		{ :field => "lastname", :label => "Lastname" },
+		{ :field => "email", :label => "Email" },
+		{ :field => "role", :label => "Role" }
+	],
+	{ 
+		:subgrid => { :url => "/users/pets", :search => true,
+					  :columns => [
+						{ :field => "id", :label => "ID", :width => 35, :resizable => false },
+						{ :field => "name", :label => "Name" }
+					  ]
+					}
+	}
+) %>
+<br/>
+<br/>
+<br/>
+<br/>
