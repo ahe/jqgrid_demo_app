@@ -149,10 +149,61 @@
 		{ :field => "role", :label => "Role" }
 	],
 	{ 
-		:subgrid => { :url => "/users/pets", :search => true,
+		:subgrid => { :url => "/users/pets",
 					  :columns => [
-						{ :field => "id", :label => "ID", :width => 35, :resizable => false },
-						{ :field => "name", :label => "Name" }
+						{ :field => "id", :label => "ID", :width => 35, :resizable => false, :editable => true },
+						{ :field => "name", :label => "Name", :editable => true }
+					  ]
+					}
+	}
+) %>
+<br/>
+<hr/>
+<br/>
+<h1>Subgrids with CRUD operations</h1>
+<%= jqgrid("Football Players", "players_10", "/users",
+	[
+		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
+		{ :field => "pseudo", :label => "Pseudo" },
+		{ :field => "firstname", :label => "Firstname" },
+		{ :field => "lastname", :label => "Lastname" },
+		{ :field => "email", :label => "Email" },
+		{ :field => "role", :label => "Role" }
+	],
+	{ 
+		:subgrid => { :url => "/users/pets", :edit_url => "/users/post_pets_data", :add => true, :inline_edit => true, :delete => true,
+					  :columns => [
+						{ :field => "id", :label => "ID", :width => 35, :resizable => false, :editable => true },
+						{ :field => "name", :label => "Name", :editable => true }
+					  ]
+					}
+	}
+) %>
+<br/>
+<hr/>
+<br/>
+<script type="text/javascript">
+	
+	function handleSubSelection(id) {
+		alert('ID selected : ' + id);
+	}
+	
+</script>
+<h1>Subgrids with selection</h1>
+<%= jqgrid("Football Players", "players_11", "/users",
+	[
+		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
+		{ :field => "pseudo", :label => "Pseudo" },
+		{ :field => "firstname", :label => "Firstname" },
+		{ :field => "lastname", :label => "Lastname" },
+		{ :field => "email", :label => "Email" },
+		{ :field => "role", :label => "Role" }
+	],
+	{ 
+		:subgrid => { :url => "/users/pets", :direct_selection => true, :selection_handler => "handleSubSelection",
+					  :columns => [
+						{ :field => "id", :label => "ID", :width => 35, :resizable => false, :editable => true },
+						{ :field => "name", :label => "Name", :editable => true }
 					  ]
 					}
 	}
