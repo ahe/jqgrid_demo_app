@@ -1,4 +1,4 @@
-<h1>Simple DataGrid</h1>
+<h1>1) Simple DataGrid</h1>
 <%= jqgrid("Football Players", "players", "/users",
 	[
 		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
@@ -12,7 +12,7 @@
 <br/>
 <hr/>
 <br/>
-<h1>Simple DataGrid with selection link/button</h1>
+<h1>2) Simple DataGrid with selection link/button</h1>
 <script type="text/javascript">
 	
 	function handleSelection(id) {
@@ -36,7 +36,7 @@
 <br/>
 <hr/>
 <br/>
-<h1>Simple DataGrid with direct selection</h1>
+<h1>3) Simple DataGrid with direct selection</h1>
 <%= jqgrid("Football Players", "players_3", "/users",
 	[
 		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
@@ -51,7 +51,7 @@
 <br/>
 <hr/>
 <br/>
-<h1>Simple DataGrid with multiple selections</h1>
+<h1>4) Simple DataGrid with multiple selections</h1>
 <%= jqgrid("Football Players", "players_4", "/users",
 	[
 		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
@@ -68,7 +68,7 @@
 <br/>
 <hr/>
 <br/>
-<h1>Simple DataGrid with master details</h1>
+<h1>5) Simple DataGrid with master details</h1>
 <%= jqgrid("Football Players", "players_5", "/users",
 	[
 		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
@@ -91,7 +91,7 @@
 <br/>
 <hr/>
 <br/>
-<h1>Data manipulation with inline editing</h1>
+<h1>6) Data manipulation with inline editing</h1>
 <%= jqgrid("Football Players", "players_6", "/users",
 	[
 		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
@@ -106,7 +106,24 @@
 <br/>
 <hr/>
 <br/>
-<h1>Data manipulation with modal editing (+ navigation)</h1>
+<script type="text/javascript">
+	
+	function afterSubmit(r, data, action) {
+	  if(r.responseText != "") { // If an error message is returned
+	    $('#submit_errors').html('<h1>Error</h1><p>'+r.responseText+'</p>');
+	    $('#submit_errors').slideDown(); // Show div with error message
+	  
+  	  window.setTimeout(function() { // Hide error div after 6 seconds
+       $('#submit_errors').slideUp();
+      }, 6000);
+      return false; // Don't remove this!
+    }
+    return true; // Don't remove this!
+	}
+	
+</script>
+<div id="submit_errors" style="background-color: #ffcdd1; border: 2px solid #e10c0c; display:none"></div>
+<h1>7) Data manipulation with modal editing (+ navigation)</h1>
 <%= jqgrid("Football Players", "players_7", "/users",
 	[
 		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
@@ -121,7 +138,7 @@
 <br/>
 <hr/>
 <br/>
-<h1>Data manipulation with various input types</h1>
+<h1>8) Data manipulation with various input types</h1>
 <%= jqgrid("Football Players", "players_8", "/users",
 	[
 		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
@@ -138,7 +155,7 @@
 <br/>
 <hr/>
 <br/>
-<h1>Subgrids</h1>
+<h1>9) Subgrids</h1>
 <%= jqgrid("Football Players", "players_9", "/users",
 	[
 		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
@@ -160,7 +177,7 @@
 <br/>
 <hr/>
 <br/>
-<h1>Subgrids with CRUD operations</h1>
+<h1>10) Subgrids with CRUD operations</h1>
 <%= jqgrid("Football Players", "players_10", "/users",
 	[
 		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
@@ -189,7 +206,7 @@
 	}
 	
 </script>
-<h1>Subgrids with selection</h1>
+<h1>11) Subgrids with selection</h1>
 <%= jqgrid("Football Players", "players_11", "/users",
 	[
 		{ :field => "id", :label => "ID", :width => 35, :resizable => false },

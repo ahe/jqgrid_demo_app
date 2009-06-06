@@ -36,12 +36,20 @@ class UsersController < ApplicationController
       user_params = { :pseudo => params[:pseudo], :firstname => params[:firstname], :lastname => params[:lastname], 
                       :email => params[:email], :role => params[:role] }
       if params[:id] == "_empty"
-        User.create(user_params)
+        user = User.create(user_params)
       else
-        User.find(params[:id]).update_attributes(user_params)
+        user = User.find(params[:id])
+        user.update_attributes(user_params)
       end
     end
-    render :nothing => true
+    
+    # If you need to display error messages
+    err = ""
+    user.errors.entries.each do |error|
+      err << "<strong>#{error[0]}</strong> : #{error[1]}<br/>"
+    end
+    
+    render :text => "#{err}"
   end
 
   def index
