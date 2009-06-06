@@ -45,8 +45,10 @@ class UsersController < ApplicationController
     
     # If you need to display error messages
     err = ""
-    user.errors.entries.each do |error|
-      err << "<strong>#{error[0]}</strong> : #{error[1]}<br/>"
+    if user
+      user.errors.entries.each do |error|
+        err << "<strong>#{error[0]}</strong> : #{error[1]}<br/>"
+      end
     end
     
     render :text => "#{err}"
