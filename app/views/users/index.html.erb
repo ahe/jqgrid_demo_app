@@ -123,7 +123,7 @@
 	
 </script>
 <div id="submit_errors" style="background-color: #ffcdd1; border: 2px solid #e10c0c; display:none"></div>
-<h1>7) Data manipulation with modal editing (+ navigation)</h1>
+<h1>7) Data manipulation with modal editing (+ navigation and server side errors handling if pseudo is empty)</h1>
 <%= jqgrid("Football Players", "players_7", "/users",
 	[
 		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
@@ -133,7 +133,7 @@
 		{ :field => "email", :label => "Email", :editable => true },
 		{ :field => "role", :label => "Role", :editable => true }
 	],
-	{ :add => true, :edit => true, :inline_edit => false, :delete => true, :edit_url => "/users/post_data" }
+	{ :add => true, :edit => true, :inline_edit => false, :delete => true, :edit_url => "/users/post_data", :error_handler => "afterSubmit" }
 ) %>
 <br/>
 <hr/>
@@ -155,7 +155,31 @@
 <br/>
 <hr/>
 <br/>
-<h1>9) Subgrids</h1>
+<script type="text/javascript">
+function pickDates(id) {
+	jQuery("#"+id+"_lastname","#players_with_datepicker").datepicker({dateFormat:"yy-mm-dd"});
+}
+</script>
+<hr/>
+<br/>
+<h1>9) Data manipulation with various input types and datepicker for lastname</h1>
+<%= jqgrid("Football Players", "players_with_datepicker", "/users",
+	[
+		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
+		{ :field => "pseudo", :label => "Pseudo", :editable => true },
+		{ :field => "firstname", :label => "Firstname", :editable => true, :edittype => "checkbox",
+		  :editoptions => { :value => "Yes:No" } },
+		{ :field => "lastname", :label => "Lastname", :editable => true },
+		{ :field => "email", :label => "Email", :editable => true, :edittype => "textarea", :editoptions => { :rows => 3, :cols => 30 } },
+		{ :field => "role", :label => "Role", :editable => true, :edittype => "select",
+		  :editoptions => { :value => [["admin","admin"], ["player", "player"], ["defender","defender"]] } }
+	],
+	{ :add => true, :edit => true, :inline_edit => true, :delete => true, :edit_url => "/users/post_data", :inline_edit_handler => "pickDates" }
+) %>
+<br/>
+<hr/>
+<br/>
+<h1>10) Subgrids</h1>
 <%= jqgrid("Football Players", "players_9", "/users",
 	[
 		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
@@ -177,7 +201,7 @@
 <br/>
 <hr/>
 <br/>
-<h1>10) Subgrids with CRUD operations</h1>
+<h1>11) Subgrids with CRUD operations</h1>
 <%= jqgrid("Football Players", "players_10", "/users",
 	[
 		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
@@ -206,7 +230,7 @@
 	}
 	
 </script>
-<h1>11) Subgrids with selection</h1>
+<h1>12) Subgrids with selection</h1>
 <%= jqgrid("Football Players", "players_11", "/users",
 	[
 		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
