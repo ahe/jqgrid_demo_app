@@ -18,10 +18,8 @@ class UsersController < ApplicationController
       pets = []
       total_entries = 0
     end
-    respond_to do |format|
-      # Fields order is important in the to_jqgrid_json method (in this case : [:id,:name])
-      # It must be the same as display order in your datagrid
-      format.json { render :json => pets.to_jqgrid_json([:id,:name], params[:page], params[:rows], total_entries) }
+    if request.xhr?
+      render :json => pets.to_jqgrid_json([:id,:name], params[:page], params[:rows], total_entries) and return
     end
   end
   
@@ -70,13 +68,8 @@ class UsersController < ApplicationController
       paginate :page => params[:page], :per_page => params[:rows]      
       order_by "#{params[:sidx]} #{params[:sord]}"
     end
-    
-    respond_to do |format|
-      format.html
-      # Fields order is important in the to_jqgrid_json method (in this case : [:id,:name])
-      # It must be the same as display order in your datagrid
-      format.json { render :json => users.to_jqgrid_json([:id,:pseudo,:firstname,:lastname,:email,:role], 
-                                                         params[:page], params[:rows], users.total_entries) }
+    if request.xhr?
+      render :json => users.to_jqgrid_json([:id,:pseudo,:firstname,:lastname,:email,:role], params[:page], params[:rows], users.total_entries) and return
     end
   end
 

@@ -12,7 +12,7 @@
 <br/>
 <hr/>
 <br/>
-<h1>2) Simple DataGrid with selection link/button</h1>
+<h1>2) Simple DataGrid with selection link/button + search disabled</h1>
 <script type="text/javascript">
 	
 	function handleSelection(id) {
@@ -29,14 +29,14 @@
 		{ :field => "email", :label => "Email" },
 		{ :field => "role", :label => "Role" }
 	],
-	{ :selection_handler => "handleSelection", :height => 300 }
+	{ :selection_handler => "handleSelection", :height => 300, :search => false }
 ) %>
 <!-- The ID of this button is important, it must be jqgrid ID (players_2) + _select_button -->
 <a href="#" id="players_2_select_button">Get ID of selected row</a>
 <br/>
 <hr/>
 <br/>
-<h1>3) Simple DataGrid with direct selection</h1>
+<h1>3) Simple DataGrid with direct selection + autowidth</h1>
 <%= jqgrid("Football Players", "players_3", "/users",
 	[
 		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
@@ -46,12 +46,12 @@
 		{ :field => "email", :label => "Email" },
 		{ :field => "role", :label => "Role" }
 	],
-	{ :selection_handler => "handleSelection", :direct_selection => true }
+	{ :selection_handler => "handleSelection", :direct_selection => true, :autowidth => true }
 ) %>
 <br/>
 <hr/>
 <br/>
-<h1>4) Simple DataGrid with multiple selections</h1>
+<h1>4) Simple DataGrid with multiple selections + row numbers</h1>
 <%= jqgrid("Football Players", "players_4", "/users",
 	[
 		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
@@ -61,7 +61,7 @@
 		{ :field => "email", :label => "Email" },
 		{ :field => "role", :label => "Role" }
 	],
-	{ :selection_handler => "handleSelection", :multi_selection => true }
+	{ :selection_handler => "handleSelection", :multi_selection => true, :rownumbers => true }
 ) %>
 <!-- The ID of this button is important, it must be jqgrid ID (players_4) + _select_button -->
 <a href="#" id="players_4_select_button">Get IDs of selected rows</a>
@@ -224,11 +224,11 @@ function pickDates(id) {
 <hr/>
 <br/>
 <script type="text/javascript">
-	
+ 
 	function handleSubSelection(id) {
 		alert('ID selected : ' + id);
 	}
-	
+ 
 </script>
 <h1>12) Subgrids with selection</h1>
 <%= jqgrid("Football Players", "players_11", "/users",
@@ -250,6 +250,17 @@ function pickDates(id) {
 	}
 ) %>
 <br/>
+<hr/>
 <br/>
-<br/>
-<br/>
+<h1>13) Form Improvements</h1>
+<%= jqgrid("Football Players", "players_13", "/users",
+	[
+		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
+		{ :field => "pseudo", :label => "Pseudo", :editable => true, :formoptions => { :rowpos => 1, :elmprefix => "(*)&nbsp;&nbsp" }, :editoptions => { :size => 22 }, :editrules => { :required => true } },
+		{ :field => "firstname", :label => "Firstname", :editable => true,  :formoptions => { :rowpos => 4, :label => "A label" }, :editoptions => { :size => 22 } },
+		{ :field => "lastname", :label => "Lastname", :editable => true, :formoptions => { :rowpos => 5 }, :editoptions => { :size => 22 } },
+		{ :field => "email", :label => "Email", :editable => true, :formoptions => { :rowpos => 3 }, :editoptions => { :size => 22 } },
+		{ :field => "role", :label => "Role", :editable => true, :stype => "select", :edittype => "select", :formoptions => { :rowpos => 2 }, :editoptions => { :value => [["admin","admin"], ["player", "player"], ["defender","defender"]], :size => 22 } }
+	],
+	{ :add => true, :edit => true, :inline_edit => true, :delete => true, :edit_url => "/users/post_data" }
+) %>
