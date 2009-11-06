@@ -7,6 +7,8 @@ This Rails demo app shows how to use my jQuery grid plugin.
 
 $ git clone git://github.com/ahe/jqgrid_demo_app.git
 $ cd jqgrid_demo_app
+$ ./script/plugin install git://github.com/ahe/2dc_jqgrid.git
+$ ./script/plugin install git://github.com/thoughtbot/squirrel.git
 $ rake db:migrate
 $ ./script/server
 
